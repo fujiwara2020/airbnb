@@ -10,4 +10,7 @@ class User < ApplicationRecord
   attr_accessor :current_password
   mount_uploader :image, ImageUploader
 
+  has_many :rooms, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+
 end

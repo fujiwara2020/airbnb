@@ -1,0 +1,24 @@
+
+<h2>予約済み一覧</h2>
+
+
+<div class = "booking_room" >
+    <% @bookings.each do |booking| %>
+        <% @rooms = Room.where(id: booking.room_id) %>
+            <% @rooms.each do |room| %>
+
+                <%= room.room_name %></br>
+
+                <% if room.room_image? %>
+                    <%= image_tag room.room_image.url, class: "booking_image" %>
+                <% else %>
+                    <%= image_tag "no-image.png" %>
+                <% end %></br>
+
+                開始日<%= booking.start_date %>
+                終了日<%= booking.end_date %>
+                人数<%= booking.people %>名</br>
+            
+            <% end %>
+    <% end %>
+</div>

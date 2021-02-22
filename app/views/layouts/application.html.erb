@@ -15,26 +15,36 @@
     <header>
       <nav>
 
-        <%= link_to "top", home_top_path %>
-
+        <%= link_to "top", root_path %>
+        <%= link_to " ルーム一覧", rooms_path %>
+        
+        
         <% if user_signed_in? %>
-
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          <%= link_to "マイページ", users_show_path %>
-
+        
+        <%= current_user.name %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "マイページ", users_show_path %>
+        <%= link_to "予約済ルーム", room_bookings_path(current_user) %>
+        <%= link_to "ルーム投稿", new_room_path %></br>
+        
         <% else %>
         
-          <%= link_to "新規登録", new_user_registration_path %>
-          <%= link_to "ログイン", new_user_session_path %>
-
+        <%= link_to "新規登録", new_user_registration_path %>
+        <%= link_to "ログイン", new_user_session_path %>
+        
         <% end %>
-
+        
+        <%= form_tag(rooms_path,:method => 'get') do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag 'Search', :name => nil %>
+        <% end %>
       </nav>
     </header>
-
+          
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
+    
 
     <%= yield %>
   </body>
