@@ -1,0 +1,31 @@
+<h2>ルーム登録</h2>
+
+<%= form_for @room do |f| %>
+  <div>
+    <%= f.label :"ルーム" %>
+    <%= f.file_field :room_image, class: "image" %>
+  </div>
+
+  <div>
+    <%= f.label :room_name,"ルーム名" %>
+    <%= f.text_field :room_name %>
+  </div>
+
+  
+  <div>
+  <%= f.label :fee,"料金" %>
+  <%= f.text_field :fee %>
+  </div>
+  
+  <div>
+  <%= f.label :address,"住所" %>
+  <%= f.text_field :address %>
+  </div>
+  
+  <div>
+    <%= f.label :room_introduction,"ルーム紹介" %>
+    <%= f.text_area :room_introduction %>
+  </div>
+    <%= f.submit "投稿"%>
+
+<% end %>

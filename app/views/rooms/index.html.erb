@@ -1,0 +1,22 @@
+
+<h2>受付ルーム一覧</h2>
+
+<% @rooms.each do |room| %>
+
+<div class="room">
+    <%= room.room_name %></br>
+    ¥<%= room.fee %>/日</br>
+
+    <% if room.room_image? %>
+        <%= image_tag room.room_image.url, class: "room_image" %>
+    <% else %>
+        <%= image_tag "no-image.png" %>
+    <% end %></br>
+ 
+    <%= room.address %></br>
+    <%= room.room_introduction %></br>
+    <%= room.created_at.to_s(:datetime_jp) %>(更新)</br>
+    <%= link_to "予約", room_path(room) %></br>
+</div>
+    
+<% end %>
