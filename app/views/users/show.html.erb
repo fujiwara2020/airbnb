@@ -1,0 +1,39 @@
+
+<h1>about me</h1>
+
+<img src=<%= @user.image %> class = "icon_image">
+<h3>ユーザー名</h3>
+<%= @user.name %>
+<h3>メールアドレス</h3>
+<%= @user.email %>
+<h3>プロフィール</h3>
+<%= @user.profile%></br>
+
+<%= link_to "プロフィール編集", edit_user_registration_path %>
+
+
+<h2>貸出中</h2>
+
+    <% @rooms.each do |room| %>
+        
+        <%= room.room_name %></br>
+        ¥<%= room.fee %>/日</br>
+
+        <% if room.room_image? %>
+            <%= image_tag room.room_image.url, class: "user_room_image" %>
+        <% else %>
+            <%= image_tag "no-image.png" %>
+        <% end %></br>
+
+        <%= room.address %></br>
+        <%= room.room_introduction %></br>
+        <%= room.created_at.to_s(:datetime_jp) %>(登録)</br>
+
+
+        <%= link_to "編集", [:edit, room] %>
+        <%= link_to "削除", room, method: :delete, data: { confirm: "本当に削除しますか？" } %></br>
+         
+    <% end %>
+
+
+
